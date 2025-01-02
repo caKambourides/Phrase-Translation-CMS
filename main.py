@@ -78,7 +78,7 @@ def edit(content_id):
         conn.close()
         return redirect(url_for('index'))
 
-    cursor.execute('SELECT wordFirstLang, wordSecondLang, sentenceFirstLang, sentenceSecondLang FROM entries WHERE id = ?', (content_id,))
+    cursor.execute('SELECT id, wordFirstLang, wordSecondLang, sentenceFirstLang, sentenceSecondLang FROM entries WHERE id = ?', (content_id,))
     entry = cursor.fetchone()
     conn.close()
     return render_template('edit.html', entry=entry, content_id=content_id)
@@ -99,15 +99,15 @@ def add():
 
     return render_template('add.html')
 
-"""@app.route('/delete/<int:content_id>', methods=['POST'])
+@app.route('/delete/<int:content_id>', methods=['GET', 'POST'])
 def delete(content_id):
-    Delete a content entry.
+    #Delete a content entry.
     conn = sqlite3.connect('cms.db')
     cursor = conn.cursor()
     cursor.execute('DELETE FROM entries WHERE id = ?', (content_id,))
     conn.commit()
     conn.close()
-    return redirect(url_for('index'))"""
+    return redirect(url_for('index'))
 
 
 if __name__ == '__main__':
