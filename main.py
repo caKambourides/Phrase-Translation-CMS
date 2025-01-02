@@ -10,7 +10,7 @@ def init_db():
     cursor = conn.cursor()
     cursor.execute('''
         CREATE TABLE IF NOT EXISTS entries (
-            id INTEGER PRIMARY KEY AUTOINCREMENT,
+            id INTEGER PRIMARY KEY,
             wordFirstLang TEXT NOT NULL,
             sentenceFirstLang TEXT NOT NULL,
             wordSecondLang TEXT NOT NULL,                   
@@ -18,14 +18,19 @@ def init_db():
         )
     ''')
     conn.commit()
-    #load and insert json data
-    with open('data.json', encoding="utf8") as f:
-        data = json.load(f)
-    for entry in data:
-        cursor.execute('''
-            INSERT INTO entries (wordFirstLang, sentenceFirstLang, wordSecondLang, sentenceSecondLang)
-            VALUES (?, ?, ?, ?)
-        ''', (entry['wordFirstLang'], entry['sentenceFirstLang'], entry['wordSecondLang'], entry['sentenceSecondLang']))
+    # Check if the table is empty
+    cursor.execute("SELECT COUNT(*) FROM entries")
+    row_count = cursor.fetchone()[0]
+
+    if row_count == 0:
+        #load and insert json data
+        with open('data.json', encoding="utf8") as f:
+            data = json.load(f)
+        for entry in data:
+            cursor.execute('''
+                INSERT INTO entries (id, wordFirstLang, sentenceFirstLang, wordSecondLang, sentenceSecondLang)
+                VALUES (?, ?, ?, ?, ?)
+            ''', (entry['id'], entry['wordFirstLang'], entry['sentenceFirstLang'], entry['wordSecondLang'], entry['sentenceSecondLang']))
     
     conn.commit()
     conn.close()
@@ -106,4 +111,4 @@ def delete(content_id):
 
 if __name__ == '__main__':
     init_db()
-    app.run(debug=True)
+    app.run()
