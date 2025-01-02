@@ -40,7 +40,15 @@ def index():
     cursor.execute('SELECT id, wordFirstLang, wordSecondLang FROM entries')
     entries = cursor.fetchall()
     conn.close()
-    return render_template('index.html', entries=entries)
+
+    page = request.args.get('page', 1, type=int)
+    perPage = 10
+    start = (page - 1) * perPage
+    end = start + perPage
+    totalPages = (len(entries) + perPage - 1) // perPage
+
+    entries_to_display = entries[start:end]
+    return render_template('index.html', entries=entries_to_display, page=page, totalPages=totalPages)
 
 
 @app.route('/view/<int:content_id>')

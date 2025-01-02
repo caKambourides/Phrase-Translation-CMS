@@ -18,6 +18,22 @@
         </li>
         {% endfor %}
     </ul>
+
+    {% if page > 1 %}
+    <a href="/?page={{ 1 }}">Start</a> ..
+    <a href="/?page={{ page - 1 }}">{{ page - 1 }}</a>
+    {% endif %}
+
+    <a>{{ page }}</a>
+    
+    {% if page < totalPages %}
+    <a href="/?page={{ page + 1 }}">{{ page + 1 }}</a>
+    ..<a href="/?page={{ totalPages }}">End</a>
+    {% endif %}
+
+    <!--{% for page in range(1, totalPages + 1) %}
+        <a href="/?page={{ page }}">{{ page }}</a>
+    {% endfor %}-->
 </body>
 <script src="{{ url_for('static', filename='index.js') }}"></script>
 </html>
