@@ -1,18 +1,30 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>Edit Content</title>
+    <title>Edit Entry</title>
     <link rel="shortcut icon" href="{{ url_for('static', filename='favicon.ico') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
 </head>
 <body>
-    <h1>Edit Content</h1>
-    <form method="post">
-        <label>Title:</label><br>
+    <div class="container">
+    <h1>Edit Entry</h1>
+    <form method="post" class="edit-form">
+        <label>Word:</label><br>
         <input type="text" name="title" value="{{ entry[0] }}"><br><br>
-        <label>Body:</label><br>
-        <textarea name="body">{{ entry[1] }}</textarea><br><br>
-        <button type="submit">Save</button>
+        <label>Translation:</label><br>
+        <input type="text" name="title" value="{{ entry[1] }}"><br><br>
+        <label>Example Sentence (Russian):</label><br>
+        <textarea name="Example Sentence (Russian)">{{ entry[2] }}</textarea><br><br>
+        <label>Example Sentence (Finnish):</label><br>
+        <textarea name="Example Sentence (Finnish)">{{ entry[3] }}</textarea><br><br>
+        
+        <div class="form-actions">
+            <button type="submit">Save</button>
+            <button type="button" onclick="window.location.href='/'">Back to Home</button>
+            <button type="button">Delete</button>
+        </div>  
     </form>
-    <a href="/">Back to Home</a>
+</div>
 </body>
+<script src="{{ url_for('static', filename='script.js') }}"></script>
 </html>

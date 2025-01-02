@@ -1,24 +1,27 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>Phrases Translation</title>
+    <title>Phrase Translation Demo</title>
     <link rel="shortcut icon" href="{{ url_for('static', filename='favicon.ico') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
 </head>
 <body>
-    <h1>Phrases Translation</h1>
-    <a href="/add">Add New Entry</a>
+    
+    <div class="container">
+    <h1>Phrase Translation Demo</h1>
+    <a href="/add" class="add-entry">Add New Entry</a>
     <table id="entries">
         <thead>
             <tr>
                 <th>Word</th>
                 <th>Translation</th>
-                <th>Example Sentence 1</th>
-                <th>Example Sentence 2</th>
+                <th>Example Sentence (Russian)</th>
+                <th>Example Sentence (Finnish)</th>
             </tr>
         </thead>
         <tbody>
         {% for entry in entries %}
-            <tr onclick="goTo('{{ entry[0] }}')">
+            <tr onclick="window.location.href='/edit/{{ entry[0] }}'">
                 <td>{{ entry[1] }}</td>
                 <td>{{ entry[2] }}</td>
                 <td>{{ entry[3] }}</td>
@@ -28,28 +31,22 @@
         </tbody>
     </table>
 
-    {% if page > 1 %}
-    <a href="/?page={{ 1 }}">Start</a> ..
-    <a href="/?page={{ page - 1 }}">{{ page - 1 }}</a>
-    {% endif %}
+    <div class="pagination">
+        {% if page > 1 %}
+            <a href="/?page={{ 1 }}">Start</a> ..
+            <a href="/?page={{ page - 1 }}">{{ page - 1 }}</a>
+        {% endif %}
+        <span>{{ page }}</span>
+        {% if page < totalPages %}
+            <a href="/?page={{ page + 1 }}">{{ page + 1 }}</a>
+            ..<a href="/?page={{ totalPages }}">End</a>
+        {% endif %}
+    </div>
 
-    <a>{{ page }}</a>
-    
-    {% if page < totalPages %}
-    <a href="/?page={{ page + 1 }}">{{ page + 1 }}</a>
-    ..<a href="/?page={{ totalPages }}">End</a>
-    {% endif %}
-
+</div>
     <!--{% for page in range(1, totalPages + 1) %}
         <a href="/?page={{ page }}">{{ page }}</a>
     {% endfor %}-->
 </body>
-<script src="{{ url_for('static', filename='index.js') }}"></script>
-
-<script>
-    function goTo(item) {
-        // Redirect to the item-specific page in Flask
-        window.location.href = `/view/${item}`;
-    }
-</script>
+<script src="{{ url_for('static', filename='script.js') }}"></script>
 </html>
