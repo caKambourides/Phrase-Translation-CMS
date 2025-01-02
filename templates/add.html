@@ -3,16 +3,25 @@
 <head>
     <title>Add Content</title>
     <link rel="shortcut icon" href="{{ url_for('static', filename='favicon.ico') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
 </head>
 <body>
-    <h1>Add New Content</h1>
-    <form method="post">
-        <label>Title:</label><br>
-        <input type="text" name="title"><br><br>
-        <label>Body:</label><br>
-        <textarea name="body"></textarea><br><br>
-        <button type="submit">Add</button>
-    </form>
-    <a href="/">Back to Home</a>
+    <div class="container">
+        <h1>Add New Entry</h1>
+        <form method="post" class = "edit-form">
+            <label>Word:</label><br>
+            <input type="text" name="wordFirstLang"><br><br>
+            <label>Translation:</label><br>
+            <input type="text" name="wordSecondLang"><br><br>
+            <label>Example Sentence (Russian):</label><br>
+            <textarea name="sentenceFirstLang"></textarea><br><br>
+            <label>Example Sentence (Finnish):</label><br>
+            <textarea name="sentenceSecondLang"></textarea><br><br>
+            <div class="form-actions">
+                <button type="submit">Submit</button>
+                <button type="button" onclick="window.location.href='/'">Back to Home</button>
+            </div> 
+        </form>
+    </div>
 </body>
 </html>

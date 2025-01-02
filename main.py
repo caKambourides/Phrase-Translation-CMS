@@ -51,16 +51,6 @@ def index():
     return render_template('index.html', entries=entries_to_display, page=page, totalPages=totalPages)
 
 
-@app.route('/view/<int:content_id>')
-def view(content_id):
-    #View a single entry
-    conn = sqlite3.connect('cms.db')
-    cursor = conn.cursor()
-    cursor.execute('SELECT wordFirstLang, wordSecondLang, sentenceFirstLang, sentenceSecondLang FROM entries WHERE id = ?', (content_id,))
-    entry = cursor.fetchone()
-    conn.close()
-    return render_template('view.html', entry=entry)
-
 @app.route('/edit/<int:content_id>', methods=['GET', 'POST'])
 def edit(content_id):
     #Edit an entry
@@ -88,7 +78,9 @@ def add():
     #Add a new entry
     if request.method == 'POST':
         wordFirstLang = request.form['wordFirstLang']
-        #TODO
+        wordSecondLang = request.form['wordSecondLang']
+        sentenceFirstLang = request.form['sentenceFirstLang']
+        sentenceSecondLang = request.form['sentenceSecondLang']
 
         conn = sqlite3.connect('cms.db')
         cursor = conn.cursor()
