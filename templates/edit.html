@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Edit Content</title>
+    <link rel="shortcut icon" href="{{ url_for('static', filename='favicon.ico') }}">
+</head>
+<body>
+    <h1>Edit Content</h1>
+    <form method="post">
+        <label>Title:</label><br>
+        <input type="text" name="title" value="{{ entry[0] }}"><br><br>
+        <label>Body:</label><br>
+        <textarea name="body">{{ entry[1] }}</textarea><br><br>
+        <button type="submit">Save</button>
+    </form>
+    <a href="/">Back to Home</a>
+</body>
+</html>
