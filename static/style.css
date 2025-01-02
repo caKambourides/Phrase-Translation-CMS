@@ -145,11 +145,11 @@ button:hover {
     background-color: #45a049;
 }
 
-button[type="button"] {
+.delete-button {
     background-color: #f44336;
 }
 
-button[type="button"]:hover {
+.delete-button:hover {
     background-color: #e53935;
 }
 
