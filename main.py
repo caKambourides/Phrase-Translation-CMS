@@ -37,7 +37,7 @@ def index():
     #Display all entries
     conn = sqlite3.connect('cms.db')
     cursor = conn.cursor()
-    cursor.execute('SELECT id, wordFirstLang, wordSecondLang FROM entries')
+    cursor.execute('SELECT id, wordFirstLang, wordSecondLang, sentenceFirstLang, sentenceSecondLang FROM entries')
     entries = cursor.fetchall()
     conn.close()
 

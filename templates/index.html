@@ -7,17 +7,26 @@
 <body>
     <h1>Phrases Translation</h1>
     <a href="/add">Add New Entry</a>
-    <ul id="entries">
+    <table id="entries">
+        <thead>
+            <tr>
+                <th>Word</th>
+                <th>Translation</th>
+                <th>Example Sentence 1</th>
+                <th>Example Sentence 2</th>
+            </tr>
+        </thead>
+        <tbody>
         {% for entry in entries %}
-        <li>
-            <a href="/view/{{ entry[0] }}">{{ entry[1] }}</a> 
-            <!--(<a href="/edit/{{ entry[0] }}">Edit</a>) 
-            <form action="/delete/{{ entry[0] }}" method="post" style="display:inline;">
-                <button type="button">Delete</button>
-            </form>-->
-        </li>
+            <tr onclick="goTo('{{ entry[0] }}')">
+                <td>{{ entry[1] }}</td>
+                <td>{{ entry[2] }}</td>
+                <td>{{ entry[3] }}</td>
+                <td>{{ entry[4] }}</td>
+            </tr>
         {% endfor %}
-    </ul>
+        </tbody>
+    </table>
 
     {% if page > 1 %}
     <a href="/?page={{ 1 }}">Start</a> ..
@@ -36,4 +45,11 @@
     {% endfor %}-->
 </body>
 <script src="{{ url_for('static', filename='index.js') }}"></script>
+
+<script>
+    function goTo(item) {
+        // Redirect to the item-specific page in Flask
+        window.location.href = `/view/${item}`;
+    }
+</script>
 </html>
