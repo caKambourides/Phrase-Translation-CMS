@@ -10,13 +10,13 @@
     <h1>Edit Entry</h1>
     <form method="post" class="edit-form">
         <label>Word:</label><br>
-        <input type="text" name="title" value="{{ entry[0] }}"><br><br>
+        <input type="text" name="wordFirstLang" value="{{ entry[0] }}"><br><br>
         <label>Translation:</label><br>
-        <input type="text" name="title" value="{{ entry[1] }}"><br><br>
+        <input type="text" name="wordSecondLang" value="{{ entry[1] }}"><br><br>
         <label>Example Sentence (Russian):</label><br>
-        <textarea name="Example Sentence (Russian)">{{ entry[2] }}</textarea><br><br>
+        <textarea name="sentenceFirstLang">{{ entry[2] }}</textarea><br><br>
         <label>Example Sentence (Finnish):</label><br>
-        <textarea name="Example Sentence (Finnish)">{{ entry[3] }}</textarea><br><br>
+        <textarea name="sentenceSecondLang">{{ entry[3] }}</textarea><br><br>
         
         <div class="form-actions">
             <button type="submit">Save</button>

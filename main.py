@@ -69,9 +69,11 @@ def edit(content_id):
 
     if request.method == 'POST':
         wordFirstLang = request.form['wordFirstLang']
-        #TODO
+        wordSecondLang = request.form['wordSecondLang']
+        sentenceFirstLang = request.form['sentenceFirstLang']
+        sentenceSecondLang = request.form['sentenceSecondLang']
 
-        cursor.execute('UPDATE entries SET wordFirstLang = ?, wordSecondLang = ?, sentenceFirstLang = ?, sentenceSecondLang = ? WHERE id = ?', (title, body, content_id))
+        cursor.execute('UPDATE entries SET wordFirstLang = ?, wordSecondLang = ?, sentenceFirstLang = ?, sentenceSecondLang = ? WHERE id = ?', (wordFirstLang, wordSecondLang, sentenceFirstLang, sentenceSecondLang, content_id))
         conn.commit()
         conn.close()
         return redirect(url_for('index'))
