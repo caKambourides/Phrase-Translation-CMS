@@ -1,4 +1,19 @@
 /* General styles */
+header {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    align-items: center;    
+    justify-content: space-between; 
+}
+header input{
+    padding: 10px;
+    font-size: 14px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+}
+header form{
+}
 body {
     font-family: Arial, sans-serif;
     background-color: #f4f4f9;

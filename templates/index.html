@@ -9,11 +9,13 @@
     
     <div class="container">
     <h1>Phrase Translation Demo</h1>
-    <button type="button" onclick="window.location.href='/add'">Add New Entry</button>
-    
-    <form action="/" method="get" class="edit-form">
-      <input type="text" name="query" placeholder="Search..." />
-    </form>
+    <header>
+        <button type="button" onclick="window.location.href='/add'">Add New Entry</button>
+
+        <form action="/" method="get">
+          <input type="text" name="query" placeholder="Search..." />
+        </form>
+    </header>
     <table id="entries">
         <thead>
             <tr>
@@ -48,9 +50,6 @@
     </div>
 
 </div>
-    <!--{% for page in range(1, totalPages + 1) %}
-        <a href="/?page={{ page }}">{{ page }}</a>
-    {% endfor %}-->
 </body>
 <script src="{{ url_for('static', filename='script.js') }}"></script>
 </html>
