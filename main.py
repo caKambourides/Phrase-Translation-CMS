@@ -37,10 +37,12 @@ def index():
     #Display all entries
     conn = sqlite3.connect('cms.db')
     cursor = conn.cursor()
-    cursor.execute('SELECT id, wordFirstLang, wordSecondLang, sentenceFirstLang, sentenceSecondLang FROM entries')
+    query = request.args.get('query')
+    if not query:
+        query = ""
+    cursor.execute('SELECT id, wordFirstLang, wordSecondLang, sentenceFirstLang, sentenceSecondLang FROM entries WHERE wordFirstLang LIKE ? OR wordSecondLang LIKE ?', ('%' + query + '%', '%' + query + '%'))
     entries = cursor.fetchall()
     conn.close()
-
     page = request.args.get('page', 1, type=int)
     perPage = 10
     start = (page - 1) * perPage
